@@ -162,6 +162,37 @@ h2 {
     margin-right: var(--spacing-small);
 }
 
+/* --- Estilos para los nuevos contenedores de tipo de panel --- */
+.muro-panel-types,
+.cielo-panel-type {
+    margin-top: var(--spacing-large); /* Espacio arriba de los selectores de panel */
+    padding-top: var(--spacing-medium); /* Padding arriba para separar visualmente */
+    border-top: 1px dashed var(--color-light-gray); /* Borde punteado para separar */
+}
+
+/* Añadir borde y padding si hay dos selectores de panel en muro */
+/* Esto se controla implícitamente porque el div .muro-panel-types siempre existe para muros */
+/* Si queremos que el borde solo aparezca con 2 caras, necesitaríamos JS para añadir una clase */
+/* Por ahora, aplicamos el borde siempre que el contenedor de muros esté visible */
+.muro-panel-types:not(.hidden) {
+    padding: var(--spacing-medium); /* Padding alrededor de los selectores de panel */
+    border: 1px solid var(--color-light-gray); /* Borde alrededor del grupo */
+    border-radius: var(--border-radius-medium);
+    margin-bottom: var(--spacing-medium); /* Espacio debajo del grupo de selectores */
+}
+
+/* Asegura que los input-group dentro de estos contenedores tengan su margen */
+.muro-panel-types .input-group,
+.cielo-panel-type .input-group {
+    margin-bottom: var(--spacing-medium); /* Espacio entre los selectores de panel si hay varios (muro con 2 caras) */
+}
+
+/* Elimina el margen inferior del último input-group dentro del contenedor de panel types */
+.muro-panel-types .input-group:last-child,
+.cielo-panel-type .input-group:last-child {
+    margin-bottom: 0;
+}
+
 /* Estilos generales para botones */
 button {
     display: block;
@@ -394,7 +425,7 @@ button:disabled {
 #results-content table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: var(--spacing-large);
+    margin-top: var(--spacing-medium); /* Ajuste de margen */
     margin-bottom: var(--spacing-large);
     box-shadow: var(--shadow-medium); /* Sombra para la tabla */
     border-radius: var(--border-radius-medium); /* Aplica al contenedor table */
@@ -464,7 +495,6 @@ footer p {
     margin: var(--spacing-unit) 0; /* Espacio entre párrafos del footer */
 }
 
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
@@ -495,6 +525,18 @@ footer p {
          width: 100%; /* Full width inputs */
          min-width: 0;
     }
+
+     /* Responsive for panel type containers */
+    .muro-panel-types:not(.hidden),
+    .cielo-panel-type:not(.hidden) {
+        padding: var(--spacing-medium); /* Keep padding */
+        margin-bottom: var(--spacing-medium); /* Keep margin */
+        border: 1px solid var(--color-light-gray); /* Keep border */
+        border-radius: var(--border-radius-medium); /* Keep radius */
+        margin-top: var(--spacing-large); /* Keep top margin */
+        padding-top: var(--spacing-medium); /* Adjust padding top */
+    }
+
 
     .remove-item-btn {
         top: var(--spacing-small);
@@ -532,6 +574,9 @@ footer p {
         padding-top: var(--spacing-medium);
         margin-top: var(--spacing-large);
     }
+     .clarification-text {
+        font-size: 0.8em; /* Smaller font on smaller screens */
+    }
 }
 
 @media (max-width: 480px) {
@@ -565,5 +610,8 @@ footer p {
 
     footer {
         font-size: 0.8em;
+    }
+     .clarification-text {
+        font-size: 0.8em; /* Consistent smaller font */
     }
 }
